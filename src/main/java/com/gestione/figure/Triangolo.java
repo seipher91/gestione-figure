@@ -5,19 +5,23 @@ package com.gestione.figure;
  *
  */
 public class Triangolo extends Figura {
-
-	private double l, h;
+	
+	public Triangolo() {
+		super();
+		this.variabili = 2;
+	}
 
 	public Triangolo(double l, double h) {
 		super();
-		this.l = l;
-		this.h = h;
+		this.lato1 = l;
+		this.lato2 = h;
+		this.variabili = 2;
 	}
 
 	@Override
 	public double area() {
 		double area = 0;
-		area = (this.h * this.l) / 2;
+		area = (this.lato1 * this.lato2) / 2;
 		return area;
 	}
 

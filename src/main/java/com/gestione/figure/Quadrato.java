@@ -9,17 +9,21 @@ package com.gestione.figure;
  */
 public class Quadrato extends Figura {
 
-	private double l;
+	public Quadrato() {
+		super();
+		this.variabili = 1;
+	}
 
 	public Quadrato(double l) {
 		super();
-		this.l = l;
+		this.lato1 = l;
+		this.variabili = 1;
 	}
 
 	@Override
 	public double area() {
 		double area = 0.0;
-		area = Math.pow(this.l, 2);
+		area = Math.pow(this.lato1, 2);
 		return area;
 	}
 

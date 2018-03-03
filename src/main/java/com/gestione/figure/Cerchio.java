@@ -8,18 +8,22 @@ package com.gestione.figure;
  *
  */
 public class Cerchio extends Figura {
-
-	private double r;
+	
+	public Cerchio() {
+		super();
+		this.variabili = 1;
+	}
 
 	public Cerchio(double r) {
 		super();
-		this.r = r;
+		this.lato1 = r;
+		this.variabili = 1;
 	}
 
 	@Override
 	public double area() {
 		double area = 0;
-		area = Math.PI * Math.pow(this.r, 2);
+		area = Math.PI * Math.pow(this.lato1, 2);
 		return area;
 	}
 
