@@ -27,10 +27,11 @@ public class Disegno {
 	}
 
 	public Disegno sceltaFigura(int choose) {
-
+		if(choose >= 5 || choose <= 0) {
+			throw new ArrayIndexOutOfBoundsException("Devi inserire un valore corretto!");
+		}
 		switch (choose) {
 		default:
-			System.err.println("Wrong Choose");
 		case 1:
 			this.addFigura(this.disegno, new Quadrato());
 			break;
@@ -45,7 +46,6 @@ public class Disegno {
 			break;
 		}
 		return this;
-
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class Disegno {
 		Disegno d = new Disegno();
 		d.sceltaFigura(i);
 
-		System.out.println("Inserisci il lato ");
+		System.out.println("Inserisci il valore del lato ");
 
 		if (d.disegno[d.disegno.length - 1].getVariabili() == 1) {
 
@@ -75,10 +75,9 @@ public class Disegno {
 			sc.close();
 			d.inserimentoVariabili(lato1);
 		} else {
-
 			double lato1 = sc.nextDouble();
 			sc.nextLine();
-			System.out.println("inserisci il lato 2 ");
+			System.out.println("Inserisci il valore del secondo lato ");
 			double lato2 = sc.nextDouble();
 			sc.nextLine();
 			d.inserimentoVariabili(lato1, lato2);
