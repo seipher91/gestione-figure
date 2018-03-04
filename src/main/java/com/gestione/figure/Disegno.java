@@ -13,39 +13,55 @@ import java.util.Scanner;
 public class Disegno {
 
 	private Figura[] disegno;
+	private Figura f;
 
 	public Disegno() {
 		this.disegno = new Figura[0];
 	}
 
 	public Figura[] addFigura(Figura[] figure, Figura f) {
-
-		figure = Arrays.copyOf(figure, figure.length + 1);
+		if (figure == null) {
+			figure = new Figura[1];
+			this.disegno = figure;
+		} else {
+			figure = Arrays.copyOf(figure, figure.length + 1);
+		}
 		figure[figure.length - 1] = f;
 		this.disegno = figure;
 		return this.disegno;
 	}
 
-	public Disegno sceltaFigura(int choose) {
-		if(choose >= 5 || choose <= 0) {
-			throw new ArrayIndexOutOfBoundsException("Devi inserire un valore corretto!");
-		}
-		switch (choose) {
-		default:
-		case 1:
+	private Disegno sceltaFigura(String s) {
+		String figuraScelta = s.toLowerCase();
+
+		switch (figuraScelta) {
+		case "quadrato":
 			this.addFigura(this.disegno, new Quadrato());
 			break;
-		case 2:
+		case "rettangolo":
 			this.addFigura(this.disegno, new Rettangolo());
 			break;
-		case 3:
+		case "triangolo":
 			this.addFigura(this.disegno, new Triangolo());
 			break;
-		case 4:
+		case "cerchio":
 			this.addFigura(this.disegno, new Cerchio());
 			break;
+		default:
+			throw new IllegalArgumentException("Scrivi bene");
 		}
 		return this;
+	}
+
+	private void inserimentoVariabili(double lato1) {
+
+		this.disegno[this.disegno.length - 1].setLato1(lato1);
+	}
+
+	private void inserimentoVariabili(double lato1, double lato2) {
+
+		this.inserimentoVariabili(lato1);
+		this.disegno[this.disegno.length - 1].setLato2(lato2);
 	}
 
 	/**
@@ -57,49 +73,36 @@ public class Disegno {
 	}
 
 	public static void init() {
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Ciao!\nQuesto è un programma che ti permette di calcolare l'area di una figura piana.\n"
-				+ "Inserisci l'intero desiderato\n1. Quadrato\n2. Rettangolo\n3. Triangolo\n4. Cerchio");
-		int i = sc.nextInt();
 
+		Scanner input = new Scanner(System.in);
+		String s, chiudi;
 		Disegno d = new Disegno();
-		d.sceltaFigura(i);
+		do {
+			System.out.println("Ciao!\nQuesto è un programma che ti permette di calcolare l'area di una figura piana.\n"
+					+ "Scrivi l'area della figura che vuoi calcolare:\n1. Quadrato\n2. Rettangolo\n3. Triangolo\n4. Cerchio");
+			s = input.nextLine();
+			d.sceltaFigura(s);
+			System.out.println("Inserisci il valore del lato ");
+			if (d.disegno[d.disegno.length - 1].getVariabili() == 1) {
+				double lato1 = input.nextDouble();
+				input.nextLine();
+				d.inserimentoVariabili(lato1);
+			} else {
+				double lato1 = input.nextDouble();
+				input.nextLine();
+				System.out.println("Inserisci il valore del secondo lato ");
+				double lato2 = input.nextDouble();
+				input.nextLine();
+				d.inserimentoVariabili(lato1, lato2);
+			}
+			for (Figura f : d.disegno) {
+				System.out.println(f);
+			}
+			System.out.println("Vuoi uscire? y");
+			chiudi = input.nextLine();
+		} while (chiudi.charAt(0) != 'y');
+		input.close();
 
-		System.out.println("Inserisci il valore del lato ");
-
-		if (d.disegno[d.disegno.length - 1].getVariabili() == 1) {
-
-			double lato1 = sc.nextDouble();
-			sc.nextLine();
-			sc.close();
-			d.inserimentoVariabili(lato1);
-		} else {
-			double lato1 = sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Inserisci il valore del secondo lato ");
-			double lato2 = sc.nextDouble();
-			sc.nextLine();
-			d.inserimentoVariabili(lato1, lato2);
-			sc.close();
-		}
-
-	
-		for (Figura f : d.disegno) {
-			System.out.println(f);
-		}
-
-	}
-
-	public void inserimentoVariabili(double lato1) {
-
-		this.disegno[this.disegno.length - 1].setLato1(lato1);
-	}
-
-	public void inserimentoVariabili(double lato1, double lato2) {
-
-		this.disegno[this.disegno.length - 1].setLato1(lato1);
-		this.disegno[this.disegno.length - 1].setLato2(lato2);
 	}
 
 }
