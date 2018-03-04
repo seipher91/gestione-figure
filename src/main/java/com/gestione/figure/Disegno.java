@@ -4,6 +4,7 @@
 package com.gestione.figure;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -30,10 +31,10 @@ public class Disegno {
 		this.disegno = figure;
 		return this.disegno;
 	}
-	
+
 	private Disegno sceltaFigura(String s, Scanner input) {
 		String figuraScelta = s.toLowerCase();
-		
+
 		switch (figuraScelta) {
 		case "quadrato":
 			this.addFigura(this.disegno, new Quadrato());
@@ -80,13 +81,15 @@ public class Disegno {
 		Scanner input = new Scanner(System.in);
 		String s;
 		Disegno d = new Disegno();
-		double lato1, lato2;
+		double lato1 = 0.0, lato2 = 0.0;
+		boolean bError = true;
 		do {
 			System.out.println("Ciao!\nQuesto è un programma che ti permette di calcolare l'area di una figura piana.\n"
 					+ "Scrivi l'area della figura che vuoi calcolare:\n1. Quadrato\n2. Rettangolo\n3. Triangolo\n4. Cerchio");
 			s = input.nextLine();
 			d.sceltaFigura(s, input);
-			System.out.println("\nInserisci il valore del lato ");
+
+			System.out.println("\nInserisci il valore del lato");
 			if (d.disegno[d.disegno.length - 1].getVariabili() == 1) {
 				lato1 = input.nextDouble();
 				input.nextLine();
@@ -94,18 +97,20 @@ public class Disegno {
 			} else {
 				lato1 = input.nextDouble();
 				input.nextLine();
-				System.out.println("\nInserisci il valore del secondo lato ");
+				System.out.println("\nInserisci il valore dell'altezza");
 				lato2 = input.nextDouble();
 				input.nextLine();
 				d.inserimentoVariabili(lato1, lato2);
 			}
+
 			System.out.println("\nElenco delle aree calcolate!");
 			for (Figura f : d.disegno) {
 				System.out.println(f);
 			}
-			System.out.println("\nVuoi uscire? y");
+
+			System.out.println("\nVuoi chiudere il programma? Si/No");
 			s = input.nextLine();
-		} while (s.charAt(0) != 'y');
+		} while (s.charAt(0) != 's' && s.charAt(0) != 'S');
 		input.close();
 		System.out.println("\nProgramma chiuso");
 	}
