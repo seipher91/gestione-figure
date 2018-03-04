@@ -82,7 +82,6 @@ public class Disegno {
 		String s;
 		Disegno d = new Disegno();
 		double lato1 = 0.0, lato2 = 0.0;
-		boolean bError = true;
 		do {
 			System.out.println("Ciao!\nQuesto è un programma che ti permette di calcolare l'area di una figura piana.\n"
 					+ "Scrivi l'area della figura che vuoi calcolare:\n1. Quadrato\n2. Rettangolo\n3. Triangolo\n4. Cerchio");
