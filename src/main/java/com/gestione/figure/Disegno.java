@@ -82,7 +82,7 @@ public class Disegno {
 					+ "Scrivi l'area della figura che vuoi calcolare:\n1. Quadrato\n2. Rettangolo\n3. Triangolo\n4. Cerchio");
 			s = input.nextLine();
 			d.sceltaFigura(s);
-			System.out.println("Inserisci il valore del lato ");
+			System.out.println("\nInserisci il valore del lato ");
 			if (d.disegno[d.disegno.length - 1].getVariabili() == 1) {
 				double lato1 = input.nextDouble();
 				input.nextLine();
@@ -90,20 +90,24 @@ public class Disegno {
 			} else {
 				double lato1 = input.nextDouble();
 				input.nextLine();
-				System.out.println("Inserisci il valore del secondo lato ");
+				System.out.println("\nInserisci il valore del secondo lato ");
 				double lato2 = input.nextDouble();
 				input.nextLine();
 				d.inserimentoVariabili(lato1, lato2);
 			}
+			System.out.println("\nElenco delle aree calcolate!");
 			for (Figura f : d.disegno) {
 				System.out.println(f);
 			}
-			System.out.println("Vuoi uscire? y");
+			System.out.println("\nVuoi uscire? y");
 			s = input.nextLine();
 		} while (s.charAt(0) != 'y');
 		input.close();
 		System.out.println("Programma chiuso");
 	}
+	
+	public static void inserimentoVariabili() {
 		
+	}
 
 }
