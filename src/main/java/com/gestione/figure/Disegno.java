@@ -75,7 +75,7 @@ public class Disegno {
 	public static void init() {
 
 		Scanner input = new Scanner(System.in);
-		String s, chiudi;
+		String s;
 		Disegno d = new Disegno();
 		do {
 			System.out.println("Ciao!\nQuesto è un programma che ti permette di calcolare l'area di una figura piana.\n"
@@ -99,10 +99,11 @@ public class Disegno {
 				System.out.println(f);
 			}
 			System.out.println("Vuoi uscire? y");
-			chiudi = input.nextLine();
-		} while (chiudi.charAt(0) != 'y');
+			s = input.nextLine();
+		} while (s.charAt(0) != 'y');
 		input.close();
-
+		System.out.println("Programma chiuso");
 	}
+		
 
 }
