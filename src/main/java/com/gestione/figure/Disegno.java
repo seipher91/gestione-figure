@@ -3,6 +3,7 @@
  */
 package com.gestione.figure;
 
+import java.io.Console;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -88,16 +89,16 @@ public class Disegno {
 			s = input.nextLine();
 			d.sceltaFigura(s, input);
 
-			System.out.println("\nInserisci il valore del lato");
+			System.out.println("\nLato");
 			if (d.disegno[d.disegno.length - 1].getVariabili() == 1) {
-				lato1 = input.nextDouble();
+				lato1 = d.readDouble(input);
 				input.nextLine();
 				d.inserimentoVariabili(lato1);
 			} else {
-				lato1 = input.nextDouble();
+				lato1 = d.readDouble(input);
 				input.nextLine();
-				System.out.println("\nInserisci il valore dell'altezza");
-				lato2 = input.nextDouble();
+				System.out.println("\nAltezza");
+				lato2 = d.readDouble(input);
 				input.nextLine();
 				d.inserimentoVariabili(lato1, lato2);
 			}
@@ -113,5 +114,18 @@ public class Disegno {
 		input.close();
 		System.out.println("\nProgramma chiuso");
 	}
-
+	
+    private double readDouble(Scanner input) {
+        String s = null;
+        boolean isNumber = false;
+        do {
+            System.out.println("Inserisci il valore ");
+            s = input.next();
+            if (!(isNumber = s.matches("\\d+"))) { 
+                System.out.println("Non hai inserito un numero! Inseriscilo ora!");
+            }
+        } while (!isNumber);
+        return Double.parseDouble(s);
+    }
+    
 }
